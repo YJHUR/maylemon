@@ -1,0 +1,46 @@
+---
+layout: default
+body_class: post-page
+---
+
+<div class="post-shell">
+  <nav class="breadcrumbs" aria-label="현재 위치">
+    <a href="{{ '/' | relative_url }}">Home</a>
+    {% if page.categories.first %}<span>{{ page.categories.first }}</span>{% endif %}
+    <span>{{ page.title }}</span>
+  </nav>
+
+  <article class="post-box">
+    <header class="post-header">
+      <div class="post-actions">
+        <button class="share-button" type="button" data-share-url="{{ page.url | absolute_url }}">⌯ <span>SHARE</span></button>
+        <button class="reading-mode-button" type="button">ENTER READING MODE</button>
+      </div>
+      <h1>{{ page.title }}</h1>
+      <div class="post-byline">
+        <span>Posted on <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time></span>
+        <span>by <strong>{{ page.author }}</strong></span>
+        <ul class="post-tags">
+          {% for tag in page.tags limit: 8 %}<li>{{ tag }}</li>{% endfor %}
+        </ul>
+      </div>
+    </header>
+
+    {% if page.gallery %}
+      <div class="acf-gallery" data-gallery>
+        {% for image in page.gallery %}
+          <a href="{{ image.src | relative_url }}"><img src="{{ image.src | relative_url }}" alt="{{ image.alt | escape }}"></a>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+
+    <footer class="post-footer">
+      <span>♥ {{ page.likes | default: 0 }}</span>
+      <span>maylemon.net</span>
+    </footer>
+  </article>
+</div>

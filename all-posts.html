@@ -1,0 +1,15 @@
+---
+layout: default
+title: 전체글
+permalink: /전체글/
+body_class: archive-page
+---
+
+<div class="archive-shell">
+  <header><h1>전체글</h1></header>
+  <section class="masonry-grid">
+    {% for post in site.posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </section>
+</div>

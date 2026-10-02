@@ -1,0 +1,52 @@
+---
+layout: default
+title: 검색
+permalink: /search/
+body_class: archive-page search-page
+---
+
+<div class="archive-shell">
+  <header>
+    <h1>검색</h1>
+    <label class="search-field">
+      <span class="sr-only">게시물 검색</span>
+      <input id="post-search" type="search" placeholder="Search" autofocus>
+    </label>
+    <p id="search-summary" aria-live="polite"></p>
+  </header>
+  <section class="masonry-grid" id="search-results">
+    {% for post in site.posts %}
+      <div
+        class="search-result"
+        data-search="{{ post.title | append: ' ' | append: post.categories | append: ' ' | append: post.tags | downcase | escape }}"
+      >
+        {% include post-card.html post=post %}
+      </div>
+    {% endfor %}
+  </section>
+</div>
+
+<script>
+  (() => {
+    const input = document.querySelector("#post-search");
+    const results = [...document.querySelectorAll(".search-result")];
+    const summary = document.querySelector("#search-summary");
+    const params = new URLSearchParams(location.search);
+
+    const search = () => {
+      const query = input.value.trim().toLocaleLowerCase();
+      let count = 0;
+      results.forEach((result) => {
+        const matches = !query || result.dataset.search.includes(query);
+        result.hidden = !matches;
+        if (matches) count += 1;
+      });
+      summary.textContent = `${count}개의 글`;
+      window.dispatchEvent(new Event("resize"));
+    };
+
+    input.value = params.get("q") || "";
+    input.addEventListener("input", search);
+    search();
+  })();
+</script>

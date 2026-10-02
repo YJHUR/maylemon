@@ -1,0 +1,39 @@
+---
+layout: default
+body_class: home-page
+---
+
+<header class="home-hero">
+  <h1>{{ site.title }}</h1>
+  <p>{{ site.tagline }}</p>
+</header>
+
+<section class="featured-slider" aria-label="추천 게시물">
+  <button class="slider-button previous" type="button" aria-label="이전">‹</button>
+  <div class="featured-track">
+    {% for post in site.posts %}
+      {% if site.featured_post_ids contains post.wordpress_id %}
+        <a class="featured-slide" href="{{ post.url | relative_url }}">
+          <img src="{{ post.featured_image | relative_url }}" alt="" loading="eager">
+          <span>
+            <strong>{{ post.title }}</strong>
+            <small>{{ post.categories.first }}</small>
+          </span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <button class="slider-button next" type="button" aria-label="다음">›</button>
+</section>
+
+<section class="masonry-grid" aria-label="최근 게시물">
+  {% for post in site.posts limit: 12 %}
+    {% include post-card.html post=post %}
+  {% endfor %}
+</section>
+
+<div class="load-more-wrap">
+  <a class="load-more" href="{{ '/전체글/' | relative_url }}">Load More Posts</a>
+</div>
+
+{{ content }}

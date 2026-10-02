@@ -1,0 +1,30 @@
+<aside class="site-sidebar" id="site-sidebar">
+  <a class="site-logo" href="{{ '/' | relative_url }}">
+    <img src="{{ '/wp-content/uploads/2019/03/logo-wide.png' | relative_url }}" alt="{{ site.title }}">
+  </a>
+
+  <span class="menu-marker" aria-hidden="true"></span>
+  <nav class="site-nav" aria-label="주 메뉴">
+    {% for item in site.menu_categories %}
+      <a href="{{ '/category/' | append: item.slug | append: '/' | relative_url }}">{{ item.name }}</a>
+    {% endfor %}
+  </nav>
+
+  <form class="sidebar-search" action="{{ '/search/' | relative_url }}" method="get">
+    <label class="sr-only" for="sidebar-search">검색</label>
+    <input id="sidebar-search" type="search" name="q" placeholder="Search">
+  </form>
+
+  <span class="menu-marker" aria-hidden="true"></span>
+</aside>
+
+<header class="mobile-header">
+  <button class="mobile-menu-button" type="button" aria-controls="site-sidebar" aria-expanded="false">
+    <span aria-hidden="true">☰</span>
+    <span class="sr-only">메뉴 열기</span>
+  </button>
+  <a href="{{ '/' | relative_url }}">
+    <img src="{{ '/wp-content/uploads/2019/03/logo-wide.png' | relative_url }}" alt="{{ site.title }}">
+  </a>
+  <a class="mobile-search" href="{{ '/search/' | relative_url }}" aria-label="검색">⌕</a>
+</header>

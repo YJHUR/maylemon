@@ -1,0 +1,14 @@
+# Migration source material and local working data
+/.migration/
+/autumn_home1_*.tar.gz
+/autumn_db_*.sql.gz
+
+# Jekyll output and caches
+/_site/
+/.jekyll-cache/
+/.jekyll-metadata
+/.sass-cache/
+
+# Bundler
+/.bundle/
+/vendor/

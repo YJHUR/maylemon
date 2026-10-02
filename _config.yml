@@ -1,0 +1,47 @@
+title: "Heima:"
+tagline: "maylemon’s secret home"
+description: "maylemon.net 메레부부블로그"
+url: "https://maylemon.net"
+baseurl: ""
+lang: ko-KR
+timezone: Asia/Seoul
+
+permalink: pretty
+paginate_path: "/page/:num/"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - scripts
+  - autumn_home1_202609281517.tar.gz
+  - autumn_db_202609281517.sql.gz
+  - vendor
+
+featured_post_ids:
+  - 1551
+  - 2081
+  - 1595
+  - 1829
+  - 2037
+
+menu_categories:
+  - name: 아이슬란드에서 결혼하기
+    slug: wedding-in-iceland
+  - name: 메레부부 여행을 떠나다
+    slug: trip
+  - name: 맛있는거 너랑 먹을때가 제일 좋아
+    slug: eats
+
+future: false
+strict_front_matter: true
